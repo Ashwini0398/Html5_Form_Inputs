@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html 5 Form Input Fields</title>
+    <link rel="Stylesheet" href="Form.css">
+</head>
+
+<body>
+    <form>
+        <header class="head">
+            <h1>Html 5 From Input Fields</h1>
+        </header>
+        <div>
+            <label for="text">Text input type for Name: </label>
+            <input type="text" id="text" name="text" required>
+            <error-output class="text-error" for="text"></error-output>
+        </div>
+        <div>
+            <label for="pwd">Passward input type : </label>
+            <input type="password" id="pwd" name="password" required>
+            <error-output class="pwd-error" for="text"></error-output>
+        </div>
+        <div>
+            <label for="email">Email input type : </label>
+            <input type="email" id="email" name="email" required>
+            <error-output class="email-error" for="text"></error-output>
+        </div>
+        <div>
+            <label for="url">url input type : </label>
+            <input type="url" id="url" name="url">
+            <error-output class="url-error" for="text"></error-output>
+        </div>
+        <div>
+            <label for="number">Number input type : </label>
+            <input type="number" id="number" name="number">
+        </div>
+        <div>
+            <label for="tel">Telephone input type : </label>
+            <input type="tel" id="tel" name="tel">
+            <error-output class="tel-error" for="text"></error-output>
+        </div>
+        <div>
+            <label for="search">Search input type : </label>
+            <input type="search" id="search" name="search">
+        </div>
+        <div class="nativeDateTimePicker">
+            <label for="party">Choose a date and time: </label>
+            <input type="datetime-local" id="party" name="bday">
+            <span class="validity"></span>
+        </div>
+        <div>
+            <label for="salary">Choose a salary: </label>
+            <input type="range" id="salary" name="salary" min="300000" max="500000" step="100" value="350000">
+            <output class="salary-output"></output>
+        </div>
+        <div class="button">
+            <input value="Submit" onclick="Refresh()" type="button">
+        </div>
+    </form>
+    <script>
+        const text = document.querySelector('#text');
+        const textError = document.querySelector('.text-error');
+        text.addEventListener('input', function () {
+            let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+            if (nameRegex.test(text.value))
+                textError.textContent = " ";
+            else
+                textError.textContent = "Name is incorrect";
+        });
+
+        const pwd = document.querySelector('#pwd')
+        const pwdError = document.querySelector('.pwd-error');
+        pwd.oninput = function () {
+            let pwdRegex = RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,10}$');
+            if (pwdRegex.test(pwd.value))
+                pwdError.textContent = " ";
+            else
+                pwdError.textContent = "The password enter is incorrect!! Please enter valid password";
+
+        }
+
+        const email = document.querySelector('#email')
+        const emailError = document.querySelector('.email-error');
+        email.oninput = function () {
+            let emailRegex = RegExp("^([a-zA-Z0-9]*[+._-]*[a-zA-Z0-9]+@[a-zA-Z]+.{3}[a-zA-z.]*[a-zA-z]{2})+$");
+            if (emailRegex.test(email.value))
+                emailError.textContent = " ";
+            else
+                emailError.textContent = "The email entered is incorrect!! Please enter valid email address";
+
+        }
+
+
+
+        const url = document.querySelector('#url')
+        const urlError = document.querySelector('.url-error');
+        url.oninput = function () {
+            let urlRegex = RegExp("(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})");
+            if (urlRegex.test(url.value))
+                urlError.textContent = " ";
+            else
+                urlError.textContent = "The url entered is incorrect!!";
+        }
+
+        const tel = document.querySelector('#tel')
+        const telError = document.querySelector('.tel-error');
+        tel.oninput = function () {
+            let telRegex = RegExp("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$");
+            if (telRegex.test(tel.value))
+                telError.textContent = " ";
+            else
+                telError.textContent = "The phone number entered is incorrect!!";
+
+        }
+        const salary = document.querySelector("#salary");
+        const output = document.querySelector('.salary-output');
+        output.textContent = salary.value;
+        salary.addEventListener('input', function () {
+            output.textContent = salary.value;
+        });
+
+        function Refresh() {
+            window.location.reload();
+        }
+    </script>
+</body>
+
+</html>
