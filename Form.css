@@ -53,6 +53,7 @@ input {
 }
 
 error-output {
+  margin-left: 10px;
   font-size: 12px;
   font-style: italic;
   color: red;
@@ -68,3 +69,9 @@ error-output {
     font-size: 12px;
   }
 }
+/* @media only screen and (min-width: 280px) {
+  label {
+    width: 55%;
+    font-size: 12px;
+  }
+} */
